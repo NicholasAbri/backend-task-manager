@@ -62,8 +62,36 @@ const validateUpdateTask = [
   handleValidationErrors,
 ];
 
+const validateSignup = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name is required"),
+  body("email")
+    .isEmail()
+    .withMessage("Must be a valid email")
+    .normalizeEmail(),
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 characters long"),
+  handleValidationErrors,
+];
+
+const validateSignin = [
+  body("email")
+    .isEmail()
+    .withMessage("Must be a valid email")
+    .normalizeEmail(),
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required"),
+  handleValidationErrors,
+];
+
 module.exports = {
   handleValidationErrors,
   validateCreateTask,
   validateUpdateTask,
+  validateSignup,
+  validateSignin,
 };
