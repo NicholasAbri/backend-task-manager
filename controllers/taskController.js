@@ -4,11 +4,6 @@ const Task = require("../models/Task");
 exports.createTask = async (req, res) => {
   try {
     const { title, description, completed, dueDate } = req.body;
-
-    if (!title) {
-      return res.status(400).json({ message: "Title is required" });
-    }
-
     const newTask = await Task.create({
       title,
       description,
@@ -75,7 +70,7 @@ exports.deleteTask = async (req, res) => {
   try {
     const deletedTask = await Task.findByIdAndDelete(req.params.id);
 
-    if (!deletedTask) {
+    if (!deletedTask)  {
       return res.status(404).json({ message: "Task not found" });
     }
 
@@ -85,4 +80,4 @@ exports.deleteTask = async (req, res) => {
       .status(404)
       .json({ message: "Error deleting task", error: error.message });
   }
-};
+};                                                                     
