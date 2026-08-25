@@ -6,6 +6,7 @@ const dns = require("dns");
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const taskRoutes = require("./routes/taskRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 console.log("TASK ROUTES LOADED:", taskRoutes);
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/tasks", taskRoutes);
+app.use("/auth", authRoutes);
 
 app.get("/test", (req, res) => {
   res.json({ message: "Server is working" });
